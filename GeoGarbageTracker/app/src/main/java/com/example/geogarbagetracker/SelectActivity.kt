@@ -35,6 +35,12 @@ class SelectActivity : AppCompatActivity() {
             val intent = Intent(this@SelectActivity, MapActivity::class.java)
             startActivity(intent)
         }
+
+        val cameraButton: Button = findViewById(R.id.cameraButton)
+        cameraButton.setOnClickListener {
+            val intent = Intent(this@SelectActivity, CameraActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun selectImage() {
