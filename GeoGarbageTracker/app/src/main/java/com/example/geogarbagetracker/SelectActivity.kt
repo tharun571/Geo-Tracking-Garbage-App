@@ -30,6 +30,11 @@ class SelectActivity : AppCompatActivity() {
         uploadButton.setOnClickListener {
             selectImage()
         }
+        val viewMapButton: Button = findViewById(R.id.mapButton)
+        viewMapButton.setOnClickListener {
+            val intent = Intent(this@SelectActivity, MapActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun selectImage() {
