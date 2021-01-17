@@ -6,7 +6,7 @@
 
 An app created for Pragyan Hackathon 21' which is used to monitor garbage disposals in different areas with the info provided by the public. 
 
-### How it works
+## How it works
 
 ---
 
@@ -23,6 +23,14 @@ An app created for Pragyan Hackathon 21' which is used to monitor garbage dispos
 - Kotlin
 - Firebase
 
+## Screenshots
+
+---
+
+|                             |                             |                             |
+| :-------------------------: | :-------------------------: | :-------------------------: |
+| ![alt text](img/1.jpg) | ![alt text](img/2.jpg) | ![alt text](img/3.jpg) |
+| ![alt text](img/4.jpg) | ![alt text](img/5.jpg) | ![alt text](img/6.jpg) |
 
 ##
 ## 
