@@ -4,34 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectActivity">
+    tools:context=".SelectActivity"
+    android:background="#7cff00">
 
-    <Button
-        android:id="@+id/uploadButton"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/calvier"
+        android:text="Garbage Geo Tracking"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/cameraButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@drawable/button"
+        android:id="@+id/uploadButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Upload"
+        android:textColor="@color/black"
+        android:fontFamily="@font/prodreg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <Button
+        android:background="@drawable/button"
         android:id="@+id/mapButton"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="View Map"
+        android:textColor="@color/black"
+        android:fontFamily="@font/prodreg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadButton" />
 
     <Button
+        android:background="@drawable/button"
         android:id="@+id/cameraButton"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Camera"
+        android:textColor="@color/black"
+        android:fontFamily="@font/prodreg"
         app:layout_constraintBottom_toTopOf="@+id/uploadButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
