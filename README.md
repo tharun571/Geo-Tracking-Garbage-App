@@ -29,8 +29,8 @@ An app created for Pragyan Hackathon 21' which is used to monitor garbage dispos
 
 |                             |                             |                             |
 | :-------------------------: | :-------------------------: | :-------------------------: |
-| ![alt text](img/1.jpg) | ![alt text](img/2.jpg) | ![alt text](img/3.jpg) |
-| ![alt text](img/4.jpg) | ![alt text](img/5.jpg) | ![alt text](img/6.jpg) |
+| ![alt text](img/1.jpeg) | ![alt text](img/2.jpeg) | ![alt text](img/3.jpeg) |
+| ![alt text](img/4.jpeg) | ![alt text](img/5.jpeg) | ![alt text](img/6.jpeg) |
 
 ##
 ## 
