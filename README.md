@@ -32,7 +32,7 @@ An app created for Pragyan Hackathon 21' which is used to monitor garbage dispos
 
 ### Challenges Faced
 
-We were successfully able to build Machine Learning Model to predict whether the picture taken is garbage or clean,
+We were successfully able to build <a href="https://github.com/tharun571/Geo-Tracking-Garbage-ML-Algo"> Machine Learning Model </a> to predict whether the picture taken is garbage or clean,
 but the implementation of the model into the app was not successfull.
 It eventually took us time to discover the components but too much time to implement it here.
 
