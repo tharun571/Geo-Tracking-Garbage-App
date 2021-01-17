@@ -17,6 +17,14 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,7 +32,8 @@ import java.util.concurrent.ExecutorService
 
 class CameraActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
-
+    private lateinit var locations: DatabaseReference
+    private lateinit var storageRef: StorageReference
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -32,7 +41,9 @@ class CameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
-
+        val database = Firebase.database.reference
+        locations = database.child("locations")
+        storageRef = Firebase.storage("gs://geogarbagetracker.appspot.com").reference
         // Request camera permissions
         if (allPermissionsGranted()) {
             Log.i("yesyes", "granted")
@@ -111,6 +122,10 @@ class CameraActivity : AppCompatActivity() {
                 .addOnSuccessListener { location: Location? ->
                     val lon = location?.longitude
                     val lat = location?.latitude
+                    val alt = location?.altitude
+
+                    uploadImgFile(uri, lat!!,lon!!,alt!!)
+
                     Log.i("yesyes", "$lon $lat")
                 }
     }
@@ -177,5 +192,37 @@ class CameraActivity : AppCompatActivity() {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+    private fun uploadImgFile(data: Uri,lat:Double,lon:Double,alt:Double) {
+        Toast.makeText(
+            this@CameraActivity,
+            "Upload in progress",
+            Toast.LENGTH_SHORT
+        ).show()
+        val reference: StorageReference =
+            storageRef.child("uploads/").child(data.lastPathSegment!!)
+        reference.putFile(data)
+            .addOnSuccessListener { taskSnapshot ->
+                taskSnapshot.storage.getDownloadUrl()
+                    .addOnSuccessListener(OnSuccessListener<Uri> { uri ->
+                        val downloadUrl = uri.toString()
+                        Log.i("downloadUrl", downloadUrl)
+                        val loc = locations.push()
+                        loc.child("lat").setValue(lat)
+                        loc.child("lon").setValue(lon)
+                        loc.child("alt").setValue(alt)
+                        loc.child("title").setValue(loc.key)
+                        loc.child("url").setValue(downloadUrl)
+                    })
+
+
+                Toast.makeText(
+                    this@CameraActivity,
+                    "File uploaded successfully",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+
+            }
     }
 }
